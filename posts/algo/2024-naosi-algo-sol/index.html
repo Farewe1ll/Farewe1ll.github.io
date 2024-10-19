@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Blog of Farewe1ll</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+
+
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+
+using namespace std;
+using pii = pair&lt;int, int&gt;;
+
+#define rep(i, a, b) for (auto i = (a); i &lt;= decltype(i)(b); &#43;&#43;i)
+
+inline auto lowb(auto x) { return x &amp; -x; }
+template &lt;typename T&gt;
+struct Fenwick {
+    int n;
+    std::vector&lt;T&gt; c;
+
+    Fenwick(auto n_ = 0) {
+        init(n_);
+    }
+    void init(auto n_) {
+        n = n_;
+        c.assign(n, T{});
+    }
+    T ask(auto x) {
+        T ret{};
+        for (; x; x -= lowb(x)) ret &#43;= c[x];
+        return ret;
+    }
+    void add(auto x, auto k) {
+        for (; x &lt;= n; x &#43;= lowb(x)) c[x] &#43;= k;
+    }
+};
+
+signed main() {
+	cin.tie(nullptr)-&gt;sync_with_stdio(false);
+
+	int n, q; cin &gt;&gt; n &gt;&gt; q;
+	vector&lt;pii&gt; v(n &#43; 10);
+	rep (i, 1, n) cin &gt;&gt; v[i].first &gt;&gt; v[i].second;
+
+    unordered_map&lt;int, int&gt; mp;
+	vector&lt;int&gt; pos(2 * n &#43; 10);
+    auto discrete = [&amp;]() {
+        rep (i, 1, n) { pos[i] = v[i].first; pos[n &#43; i] = v[i].second; }
+        sort(pos.begin() &#43; 1, pos.begin() &#43; 2 * n &#43; 1);
+        auto lst = unique(pos.begin() &#43; 1, pos.begin() &#43; 2 * n &#43; 1) - pos.begin() - 1;
+        rep (i, 1, lst) mp[pos[i]] = i;
+        return lst;
+    };
+    int len = discrete();
+
+    Fenwick&lt;int&gt; f(len &#43; 10);
+    vector&lt;int&gt; bg(len &#43; 10);
+    rep (i, 1, n) {
+        f.add(mp[v[i].first], 1); f.add(mp[v[i].second] &#43; 1, -1);
+        &#43;&#43;bg[mp[v[i].first]];
+    }
+
+    while (q--) {
+        int x; cin &gt;&gt; x;
+        if (mp.contains(x))
+            cout &lt;&lt; f.ask(mp[x]) &lt;&lt; endl;
+        else {
+            auto p = upper_bound(pos.begin() &#43; 1, pos.begin() &#43; len &#43; 1, x);
+            auto t = *p;
+            if (p == pos.begin() &#43; len &#43; 1) cout &lt;&lt; 0 &lt;&lt; endl;
+            else cout &lt;&lt; f.ask(mp[t]) - bg[mp[t]] &lt;&lt; endl;
+        }
+    }
+
+	return 0;
+}
+
+
+">
+<meta name="author" content="Farewe1ll">
+<link rel="canonical" href="http://localhost:1313/posts/algo/2024-naosi-algo-sol/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.75056ee1a434d7c146c8b658d6b7351b9bcadae98fe3c3d59add6b5d547f544b.css" integrity="sha256-dQVu4aQ018FGyLZY1rc1G5vK2umP48PVmt1rXVR/VEs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/img/Q.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/img/Q.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/img/Q.jpg">
+<link rel="apple-touch-icon" href="http://localhost:1313/img/Q.jpg">
+<link rel="mask-icon" href="http://localhost:1313/img/Q.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/posts/algo/2024-naosi-algo-sol/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="" />
+<meta property="og:description" content="
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+
+
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+
+using namespace std;
+using pii = pair&lt;int, int&gt;;
+
+#define rep(i, a, b) for (auto i = (a); i &lt;= decltype(i)(b); &#43;&#43;i)
+
+inline auto lowb(auto x) { return x &amp; -x; }
+template &lt;typename T&gt;
+struct Fenwick {
+    int n;
+    std::vector&lt;T&gt; c;
+
+    Fenwick(auto n_ = 0) {
+        init(n_);
+    }
+    void init(auto n_) {
+        n = n_;
+        c.assign(n, T{});
+    }
+    T ask(auto x) {
+        T ret{};
+        for (; x; x -= lowb(x)) ret &#43;= c[x];
+        return ret;
+    }
+    void add(auto x, auto k) {
+        for (; x &lt;= n; x &#43;= lowb(x)) c[x] &#43;= k;
+    }
+};
+
+signed main() {
+	cin.tie(nullptr)-&gt;sync_with_stdio(false);
+
+	int n, q; cin &gt;&gt; n &gt;&gt; q;
+	vector&lt;pii&gt; v(n &#43; 10);
+	rep (i, 1, n) cin &gt;&gt; v[i].first &gt;&gt; v[i].second;
+
+    unordered_map&lt;int, int&gt; mp;
+	vector&lt;int&gt; pos(2 * n &#43; 10);
+    auto discrete = [&amp;]() {
+        rep (i, 1, n) { pos[i] = v[i].first; pos[n &#43; i] = v[i].second; }
+        sort(pos.begin() &#43; 1, pos.begin() &#43; 2 * n &#43; 1);
+        auto lst = unique(pos.begin() &#43; 1, pos.begin() &#43; 2 * n &#43; 1) - pos.begin() - 1;
+        rep (i, 1, lst) mp[pos[i]] = i;
+        return lst;
+    };
+    int len = discrete();
+
+    Fenwick&lt;int&gt; f(len &#43; 10);
+    vector&lt;int&gt; bg(len &#43; 10);
+    rep (i, 1, n) {
+        f.add(mp[v[i].first], 1); f.add(mp[v[i].second] &#43; 1, -1);
+        &#43;&#43;bg[mp[v[i].first]];
+    }
+
+    while (q--) {
+        int x; cin &gt;&gt; x;
+        if (mp.contains(x))
+            cout &lt;&lt; f.ask(mp[x]) &lt;&lt; endl;
+        else {
+            auto p = upper_bound(pos.begin() &#43; 1, pos.begin() &#43; len &#43; 1, x);
+            auto t = *p;
+            if (p == pos.begin() &#43; len &#43; 1) cout &lt;&lt; 0 &lt;&lt; endl;
+            else cout &lt;&lt; f.ask(mp[t]) - bg[mp[t]] &lt;&lt; endl;
+        }
+    }
+
+	return 0;
+}
+
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/algo/2024-naosi-algo-sol/" /><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Blog of Farewe1ll" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+
+
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+
+using namespace std;
+using pii = pair&lt;int, int&gt;;
+
+#define rep(i, a, b) for (auto i = (a); i &lt;= decltype(i)(b); &#43;&#43;i)
+
+inline auto lowb(auto x) { return x &amp; -x; }
+template &lt;typename T&gt;
+struct Fenwick {
+    int n;
+    std::vector&lt;T&gt; c;
+
+    Fenwick(auto n_ = 0) {
+        init(n_);
+    }
+    void init(auto n_) {
+        n = n_;
+        c.assign(n, T{});
+    }
+    T ask(auto x) {
+        T ret{};
+        for (; x; x -= lowb(x)) ret &#43;= c[x];
+        return ret;
+    }
+    void add(auto x, auto k) {
+        for (; x &lt;= n; x &#43;= lowb(x)) c[x] &#43;= k;
+    }
+};
+
+signed main() {
+	cin.tie(nullptr)-&gt;sync_with_stdio(false);
+
+	int n, q; cin &gt;&gt; n &gt;&gt; q;
+	vector&lt;pii&gt; v(n &#43; 10);
+	rep (i, 1, n) cin &gt;&gt; v[i].first &gt;&gt; v[i].second;
+
+    unordered_map&lt;int, int&gt; mp;
+	vector&lt;int&gt; pos(2 * n &#43; 10);
+    auto discrete = [&amp;]() {
+        rep (i, 1, n) { pos[i] = v[i].first; pos[n &#43; i] = v[i].second; }
+        sort(pos.begin() &#43; 1, pos.begin() &#43; 2 * n &#43; 1);
+        auto lst = unique(pos.begin() &#43; 1, pos.begin() &#43; 2 * n &#43; 1) - pos.begin() - 1;
+        rep (i, 1, lst) mp[pos[i]] = i;
+        return lst;
+    };
+    int len = discrete();
+
+    Fenwick&lt;int&gt; f(len &#43; 10);
+    vector&lt;int&gt; bg(len &#43; 10);
+    rep (i, 1, n) {
+        f.add(mp[v[i].first], 1); f.add(mp[v[i].second] &#43; 1, -1);
+        &#43;&#43;bg[mp[v[i].first]];
+    }
+
+    while (q--) {
+        int x; cin &gt;&gt; x;
+        if (mp.contains(x))
+            cout &lt;&lt; f.ask(mp[x]) &lt;&lt; endl;
+        else {
+            auto p = upper_bound(pos.begin() &#43; 1, pos.begin() &#43; len &#43; 1, x);
+            auto t = *p;
+            if (p == pos.begin() &#43; len &#43; 1) cout &lt;&lt; 0 &lt;&lt; endl;
+            else cout &lt;&lt; f.ask(mp[t]) - bg[mp[t]] &lt;&lt; endl;
+        }
+    }
+
+	return 0;
+}
+
+
+"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "算法",
+      "item": "http://localhost:1313/posts/algo/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "",
+      "item": "http://localhost:1313/posts/algo/2024-naosi-algo-sol/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": " 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 #include \u0026lt;bits/stdc++.h\u0026gt; using namespace std; using pii = pair\u0026lt;int, int\u0026gt;; #define rep(i, a, b) for (auto i = (a); i \u0026lt;= decltype(i)(b); ++i) inline auto lowb(auto x) { return x \u0026amp; -x; } template \u0026lt;typename T\u0026gt; struct Fenwick { int n; std::vector\u0026lt;T\u0026gt; c; Fenwick(auto n_ = 0) { init(n_); } void init(auto n_) { n = n_; c.assign(n, T{}); } T ask(auto x) { T ret{}; for (; x; x -= lowb(x)) ret += c[x]; return ret; } void add(auto x, auto k) { for (; x \u0026lt;= n; x += lowb(x)) c[x] += k; } }; signed main() { cin.tie(nullptr)-\u0026gt;sync_with_stdio(false); int n, q; cin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; q; vector\u0026lt;pii\u0026gt; v(n + 10); rep (i, 1, n) cin \u0026gt;\u0026gt; v[i].first \u0026gt;\u0026gt; v[i].second; unordered_map\u0026lt;int, int\u0026gt; mp; vector\u0026lt;int\u0026gt; pos(2 * n + 10); auto discrete = [\u0026amp;]() { rep (i, 1, n) { pos[i] = v[i].first; pos[n + i] = v[i].second; } sort(pos.begin() + 1, pos.begin() + 2 * n + 1); auto lst = unique(pos.begin() + 1, pos.begin() + 2 * n + 1) - pos.begin() - 1; rep (i, 1, lst) mp[pos[i]] = i; return lst; }; int len = discrete(); Fenwick\u0026lt;int\u0026gt; f(len + 10); vector\u0026lt;int\u0026gt; bg(len + 10); rep (i, 1, n) { f.add(mp[v[i].first], 1); f.add(mp[v[i].second] + 1, -1); ++bg[mp[v[i].first]]; } while (q--) { int x; cin \u0026gt;\u0026gt; x; if (mp.contains(x)) cout \u0026lt;\u0026lt; f.ask(mp[x]) \u0026lt;\u0026lt; endl; else { auto p = upper_bound(pos.begin() + 1, pos.begin() + len + 1, x); auto t = *p; if (p == pos.begin() + len + 1) cout \u0026lt;\u0026lt; 0 \u0026lt;\u0026lt; endl; else cout \u0026lt;\u0026lt; f.ask(mp[t]) - bg[mp[t]] \u0026lt;\u0026lt; endl; } } return 0; } ",
+  "keywords": [
+    
+  ],
+  "articleBody": " 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 #include using namespace std; using pii = pair\u003cint, int\u003e; #define rep(i, a, b) for (auto i = (a); i \u003c= decltype(i)(b); ++i) inline auto lowb(auto x) { return x \u0026 -x; } template \u003ctypename T\u003e struct Fenwick { int n; std::vector\u003cT\u003e c; Fenwick(auto n_ = 0) { init(n_); } void init(auto n_) { n = n_; c.assign(n, T{}); } T ask(auto x) { T ret{}; for (; x; x -= lowb(x)) ret += c[x]; return ret; } void add(auto x, auto k) { for (; x \u003c= n; x += lowb(x)) c[x] += k; } }; signed main() { cin.tie(nullptr)-\u003esync_with_stdio(false); int n, q; cin \u003e\u003e n \u003e\u003e q; vector\u003cpii\u003e v(n + 10); rep (i, 1, n) cin \u003e\u003e v[i].first \u003e\u003e v[i].second; unordered_map\u003cint, int\u003e mp; vector\u003cint\u003e pos(2 * n + 10); auto discrete = [\u0026]() { rep (i, 1, n) { pos[i] = v[i].first; pos[n + i] = v[i].second; } sort(pos.begin() + 1, pos.begin() + 2 * n + 1); auto lst = unique(pos.begin() + 1, pos.begin() + 2 * n + 1) - pos.begin() - 1; rep (i, 1, lst) mp[pos[i]] = i; return lst; }; int len = discrete(); Fenwick\u003cint\u003e f(len + 10); vector\u003cint\u003e bg(len + 10); rep (i, 1, n) { f.add(mp[v[i].first], 1); f.add(mp[v[i].second] + 1, -1); ++bg[mp[v[i].first]]; } while (q--) { int x; cin \u003e\u003e x; if (mp.contains(x)) cout \u003c\u003c f.ask(mp[x]) \u003c\u003c endl; else { auto p = upper_bound(pos.begin() + 1, pos.begin() + len + 1, x); auto t = *p; if (p == pos.begin() + len + 1) cout \u003c\u003c 0 \u003c\u003c endl; else cout \u003c\u003c f.ask(mp[t]) - bg[mp[t]] \u003c\u003c endl; } } return 0; } ",
+  "wordCount" : "340",
+  "inLanguage": "zh",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Farewe1ll"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/algo/2024-naosi-algo-sol/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog of Farewe1ll",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/img/Q.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Blog of Farewe1ll (Alt + H)">
+                <img src="http://localhost:1313/img/Q.jpg" alt="" aria-label="logo"
+                    height="35">Blog of Farewe1ll</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/search" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/" title="主页">
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/links" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">主页</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/"></a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/algo/">算法</a></div>
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">2 分钟&nbsp;·&nbsp;340 字&nbsp;·&nbsp;Farewe1ll
+
+</div>
+  </header> 
+
+  <div class="post-content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">pii</span> <span class="o">=</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define rep(i, a, b) for (auto i = (a); i &lt;= decltype(i)(b); ++i)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="k">auto</span> <span class="nf">lowb</span><span class="p">(</span><span class="k">auto</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Fenwick</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Fenwick</span><span class="p">(</span><span class="k">auto</span> <span class="n">n_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">init</span><span class="p">(</span><span class="n">n_</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="k">auto</span> <span class="n">n_</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="n">n_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="p">{});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="nf">ask</span><span class="p">(</span><span class="k">auto</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span> <span class="n">ret</span><span class="p">{};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(;</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">-=</span> <span class="n">lowb</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="n">ret</span> <span class="o">+=</span> <span class="n">c</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="k">auto</span> <span class="n">x</span><span class="p">,</span> <span class="k">auto</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span> <span class="o">+=</span> <span class="n">lowb</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="n">c</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">signed</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">q</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">rep</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span> <span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">discrete</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">;</span> <span class="n">pos</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sort</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">lst</span> <span class="o">=</span> <span class="n">unique</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lst</span><span class="p">)</span> <span class="n">mp</span><span class="p">[</span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">lst</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">discrete</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Fenwick</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">len</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">bg</span><span class="p">(</span><span class="n">len</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rep</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">],</span> <span class="mi">1</span><span class="p">);</span> <span class="n">f</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">bg</span><span class="p">[</span><span class="n">mp</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">q</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">mp</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">ask</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">upper_bound</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="n">t</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">pos</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">ask</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">-</span> <span class="n">bg</span><span class="p">[</span><span class="n">mp</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+  </footer><script src="https://giscus.app/client.js"
+        data-repo="Farewe1ll/Farewe1ll-Blog_Comments"
+        data-repo-id="R_kgDOM38Dfw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM38Df84Ci1w1"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="transparent_dark"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">Blog of Farewe1ll</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
