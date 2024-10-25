@@ -2,58 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://Farewe1ll.github.io/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-10-25T23:18:35+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-10-25T23:18:35+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/tags/hung-yi-lee/</loc>
+    <loc>http://localhost:1313/tags/hung-yi-lee/</loc>
     <lastmod>2024-10-25T23:18:35+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/tags/machine-learning/</loc>
+    <loc>http://localhost:1313/tags/machine-learning/</loc>
     <lastmod>2024-10-25T23:18:35+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/tags/ml/</loc>
+    <loc>http://localhost:1313/tags/ml/</loc>
     <lastmod>2024-10-25T23:18:35+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/posts/tech/</loc>
+    <loc>http://localhost:1313/posts/tech/</loc>
     <lastmod>2024-10-25T23:18:35+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E9%80%9F%E8%A7%88/</loc>
+    <loc>http://localhost:1313/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E9%80%9F%E8%A7%88/</loc>
     <lastmod>2024-10-25T23:18:35+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/tags/codeforces/</loc>
+    <loc>http://localhost:1313/tags/codeforces/</loc>
     <lastmod>2024-10-25T01:31:17+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/posts/algo/codeforces-round-981-div.-3/</loc>
+    <loc>http://localhost:1313/posts/algo/codeforces-round-981-div.-3/</loc>
     <lastmod>2024-10-25T01:31:17+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/tags/cpp/</loc>
+    <loc>http://localhost:1313/tags/cpp/</loc>
     <lastmod>2024-10-25T01:31:17+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/tags/div3/</loc>
+    <loc>http://localhost:1313/tags/div3/</loc>
     <lastmod>2024-10-25T01:31:17+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/posts/algo/</loc>
+    <loc>http://localhost:1313/posts/algo/</loc>
     <lastmod>2024-10-25T01:31:17+08:00</lastmod>
   </url><url>
-    <loc>https://Farewe1ll.github.io/links/</loc>
+    <loc>http://localhost:1313/links/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/series/</loc>
+    <loc>http://localhost:1313/series/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/posts/life/</loc>
+    <loc>http://localhost:1313/posts/life/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/search/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url><url>
-    <loc>https://Farewe1ll.github.io/posts/essay/</loc>
+    <loc>http://localhost:1313/posts/essay/</loc>
   </url>
 </urlset>

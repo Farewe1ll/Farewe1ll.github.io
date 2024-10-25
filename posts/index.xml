@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Blog of Farewe1ll</title>
-    <link>https://Farewe1ll.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content on Blog of Farewe1ll</description>
     <generator>Hugo -- 0.136.4</generator>
     <language>zh</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="https://Farewe1ll.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
