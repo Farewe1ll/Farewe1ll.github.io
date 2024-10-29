@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Concept on Blog of Farewe1ll</title>
+    <link>https://Farewe1ll.github.io/tags/concept/</link>
+    <description>Recent content in Concept on Blog of Farewe1ll</description>
+    <generator>Hugo -- 0.136.4</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 28 Oct 2024 23:24:11 +0800</lastBuildDate>
+    <atom:link href="https://Farewe1ll.github.io/tags/concept/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>李宏毅机器学习课程基本概念</title>
+      <link>https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Mon, 28 Oct 2024 23:24:11 +0800</pubDate>
+      <guid>https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid>
+      <description>Machine Learning Concepts</description>
+    </item>
+  </channel>
+</rss>

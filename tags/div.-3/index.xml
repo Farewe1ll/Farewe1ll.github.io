@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Div3 on Blog of Farewe1ll</title>
-    <link>http://localhost:1313/tags/div3/</link>
-    <description>Recent content in Div3 on Blog of Farewe1ll</description>
+    <title>Div. 3 on Blog of Farewe1ll</title>
+    <link>https://Farewe1ll.github.io/tags/div.-3/</link>
+    <description>Recent content in Div. 3 on Blog of Farewe1ll</description>
     <generator>Hugo -- 0.136.4</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 26 Oct 2024 00:01:17 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/div3/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://Farewe1ll.github.io/tags/div.-3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Codeforces Round 981 (Div. 3)</title>
-      <link>http://localhost:1313/posts/algo/codeforces-round-981-div.-3/</link>
+      <link>https://Farewe1ll.github.io/posts/algo/codeforces-round-981-div.-3/</link>
       <pubDate>Fri, 25 Oct 2024 01:31:17 +0800</pubDate>
-      <guid>http://localhost:1313/posts/algo/codeforces-round-981-div.-3/</guid>
+      <guid>https://Farewe1ll.github.io/posts/algo/codeforces-round-981-div.-3/</guid>
       <description>Codeforces Round 981 (Div. 3) 解题报告</description>
     </item>
   </channel>
