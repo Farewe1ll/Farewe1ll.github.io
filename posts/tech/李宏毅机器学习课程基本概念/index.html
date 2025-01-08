@@ -101,8 +101,8 @@
   "keywords": [
     "Machine Learning", "ML", "Hung-yi Lee", "Concept"
   ],
-  "articleBody": "李宏毅机器学习课程基本概念 Different types of Functions Regression: 输出为数值的函数\nClassification: 输出为类别的函数 可以看成离散版的 Regression ?\nStructured Learning: create sth with structure (image, document, etc.)\nSteps to solve the Function The process by applying the steps below is called Training.\n1. Function with Unknown Parameters Guess the form of the Function based on domain knowledge.\n$$ Function\\space with\\space Unknown\\space Parameters \\to Model $$\nweight: the parameter that times with $x$\nbias: the const value\n2. Define Loss from Training Data Loss is a function that evaluates the parameters.\n$$ L(b, w, \\ldots) $$\nLet\n$$ e_i = \\lvert y_i - \\hat{y_i} \\rvert \\tag{MAE} $$\nAnd we have\n$$ L = \\frac 1n \\sum_{n}{e_n} $$\nAnd in fact, we can alse define\n$$ e_i = (y_i - \\hat{y_i})^2 \\tag{MSE} $$\nIf $y$ and $\\hat{y}$ are both probability distributions $\\rightarrow$ Cross-entropy\nAfterwards, you can use heatmap to visualize the output of function $L$.\n3. Optimization To find the minimum of Function $L$ and its input $w^, b^, \\ldots$ .\nThe method is called Gradian Descent,\nSo we can start with one variable situation.\nWhile solving the one variable situation, let’s call it $\\omega$ , we can first randomly pick an initial value $\\omega^0$, and we can compute $\\left. \\frac{\\partial L}{\\partial \\omega} \\right| _{\\omega = \\omega^0}$, then, according to the partial differentiation we calculate, we could get the next $\\omega^1$ by substract $\\eta \\left. \\frac{\\partial L}{\\partial \\omega} \\right| _{\\omega = \\omega^0}$ from $\\omega^0$, in which $\\eta$ is the learning rate that we defines, called hyperparameters. And by update $\\omega$ iteratively, we may get the minimum of $Loss$ and its minimum point.\nAnd this method can be restricted to local minima, so infect we may can use simulated annealing as an alternative?\nHowever, local minima isn’t always truly cause the problem when training.\nWhen it comes to mulvariable situation, we can also apply the steps above, just simply apply it to multible variable.\nUpgrade the Function $$ y = b + \\sum_{i = 1}^{len}{\\omega_ix_i} \\tag{Linear model} $$\nTake the data before into consideration comprehensively.\nAnd the model above is usually called Linear model.\nWhen $len$ increases, the predict of Function usually converges on a certain value.\nFunction improvement Piecewise Linear Curve It’s clear that the linear models are quiet simple, so wo can try to compound several linear models together to approach the curve.\n$$ All Piecewise Linear Curve = constant + sum of a set of piecewise linear function $$\nBeyond Piecewise Linear And when we are confronted with sth that beyond piecewise linear, we can approximate continuous curve by a piecewise linear curve, just sample a few points and cut the curve into sufficient pieces.\nGet some piecewise linear function (Sigmoid Function) In fact, these piecewise linear functions are usually composed by three pieces: zero, linear and then constant. Then we may can approach the piecewise linear functions by some basic functions, like:\n$$ y = c \\frac{1}{1 + e^{-(b + \\omega x_1)}} $$\nWhen $x_1 \\rightarrow \\infty$ , $1 + e^{-(b + \\omega x_1)} \\rightarrow 1$, and $y \\rightarrow c$ . Apparently, when $x_1 \\rightarrow -\\infty$, $1 + e^{-(b + \\omega x_1)} \\rightarrow \\infty$, and $y \\rightarrow 0$ , which can satisfy our needs.\nAnd the function above is called sigmoid funcion, so\n$$ y = c \\space sigmoid(b + \\omega x_1) $$\nThe original piecewise linear function is usually called hard sigmoid.\nHere’s the effect of argument in sigmoid funcion.\n$\\omega$: change slopes\n$b$: shift\n$c$: change height\nAfter the bedding above, we can approach a specific funcion like:\n$$ y = b + \\sum_{i}{c_i\\space sigmoid(b_i + \\omega_i x_i)} $$\nAnd when we try to make the most of the data we obtained currently, we can change the function into:\n$$ y = b + \\sum_{i}{c_i \\space sigmoid(b_i + \\sum_{j}{w_{ij} x_j})} $$\nLet\n$$ r_i = b_i + \\sum_{j}{w_{ij} x_j} $$\nthen we can get matrix below:\n$$ \\begin{bmatrix} r \\end{bmatrix} = \\begin{bmatrix} \\bf{b} \\end{bmatrix} + \\begin{bmatrix} \\bf{\\omega}{i1} \\space \\bf{\\omega}{i2} \\space \\ldots \\space \\bf{\\omega}_{in} \\end{bmatrix} \\begin{bmatrix} \\bf{x} \\end{bmatrix} $$\nwhere $\\bf{r}$, $\\bf{b}$, $\\bf{\\omega}_{ij}$, $\\bf{x}$ are all vector.\nAlso, we can define $\\bf{a} = \\sigma(\\bf{r})$, and the function will be:\n$$ y = b + \\bf{c}^T \\bf{a} $$\nin a concise way.\nor:\n$$ y = b + \\bf{c}^T \\sigma(\\bf{b} + \\bf{W}\\bf{x}) $$\nin a linear algebra way.\nThe loss of sigmoid funcion And it’s neccesary to introduce the parameters in the function above again:\n$\\bf{x}$: feature\n$\\bf{W}, b, \\bf{c}^T, \\bf{b}$: Unknown parameters\nAnd by combining $\\bf{W}, \\bf{c}, \\bf{b}, b$ into a row, we can get a vector $\\bf{\\theta}$.\nSo, similarly, we can have loss function $L(\\bf{\\theta})$, like:\n$$ L = \\frac 1N \\sum_{n}{e_n} $$\nAnd… the Optimization of Sigmoid Funtion Almost the same as before.\n$$ \\begin{bmatrix} \\bf{\\theta}^i \\end{bmatrix} \\leftarrow \\begin{bmatrix} \\bf{\\theta}^{i - 1} \\end{bmatrix} - \\begin{bmatrix} \\bf{\\eta \\left. \\frac{\\partial L}{\\partial \\theta} \\right|_{\\theta = \\theta^{i - 1}}} \\end{bmatrix} $$\nWe can define $\\bf{g}$ (gradient):\n$$ \\bf{g} = \\bf{\\left. \\frac{\\partial L}{\\partial \\theta} \\right|_{\\theta = \\theta^{i - 1}}} $$\nSo, we have\n$$ \\bf{g} = \\nabla L(\\bf{\\theta^0}) $$\nWhen we solve the problem in reality, we ramdomly divide the total data $N$ into several batchs, each called a batch. And for each batch, we can calculate the value of Loss, $L_i$, and individually use $L_i$ to update $\\bf{\\theta}$ , and when we see all the batched once, we say that we go through a epoch.\nAnother choice: ReLU If we don’t adapt the sigmoid function method to approach the piecewise linear function, we can also try Rectified Linear Unit(ReLU):\n$$ y = c \\space max(0, b + \\omega x_1) + c’ \\space max(0, b’ + \\omega x_1) $$\nSo we can approach the curve like this:\n$$ y = b + \\sum_{2i}{c_i \\space max(0, b_i + \\sum_{j}{w_{ij} x_j})} $$\ncompared to sigmoid function:\n$$ y = b + \\sum_{i}{c_i \\space sigmoid(b_i + \\sum_{j}{w_{ij} x_j})} $$\nAs a result, we can identify both sigmoid and ReLU into Activation function.\nFurther Improvement: Deep Learning So temporarily, we still assume that we take sigmoid as activation function, take $\\bf{a} = \\sigma(\\bf{r})$ , the sigmoid we have mentioned:\n$$ y = b + \\bf{c}^T \\bf{a} $$\nNow we can take a step further: can we put $a$ as in input into sigmoid function, like:\n$$ \\bf{a}’ = \\sigma (\\bf{b}’ + \\bf{W}’\\bf{a}) $$\nThis is called adding a layer in funcion. By doing this, we can greatly improve the accuracy of our model.\nAnd we can name one sigmoid function in the model by Neuron, and the whole model can be named as Neural Network.\nAmong the model, we’ve got many layers, which can be named as hidden layer, so the whole technique can also called Deep Learning.\n$$ Deep = Many\\space hidden\\space layers $$\nA few examples AlexNet(2012): 8 layers\nVGG(2014): 19 layers\nGoogleNet(2014): 22 layers\nResidual Net(2015): 152 layers\nThinking: Why deep, instead of broad?\nWhy not deeper? Overfitting: Better on training data, worse on unseen data.\n",
-  "wordCount" : "1181",
+  "articleBody": "李宏毅机器学习课程基本概念 Different types of Functions Regression: 输出为数值的函数\nClassification: 输出为类别的函数 可以看成离散版的 Regression ?\nStructured Learning: create sth with structure (image, document, etc.)\nSteps to solve the Function The process by applying the steps below is called Training.\n1. Function with Unknown Parameters Guess the form of the Function based on domain knowledge.\n$$ Function\\space with\\space Unknown\\space Parameters \\to Model $$\nweight: the parameter that times with $x$\nbias: the const value\n2. Define Loss from Training Data Loss is a function that evaluates the parameters.\n$$ L(b, w, \\ldots) $$\nLet\n$$ e_i = \\lvert y_i - \\hat{y_i} \\rvert \\tag{MAE} $$\nAnd we have\n$$ L = \\frac 1n \\sum_{n}{e_n} $$\nAnd in fact, we can alse define\n$$ e_i = (y_i - \\hat{y_i})^2 \\tag{MSE} $$\nIf $y$ and $\\hat{y}$ are both probability distributions $\\rightarrow$ Cross-entropy\nAfterwards, you can use heatmap to visualize the output of function $L$.\n3. Optimization To find the minimum of Function $L$ and its input $w^{*}, b^{*}, \\ldots$ .\nThe method is called Gradian Descent,\nSo we can start with one variable situation.\nWhile solving the one variable situation, let’s call it $\\omega$ , we can first randomly pick an initial value $\\omega^0$, and we can compute $\\left. \\frac{\\partial L}{\\partial \\omega} \\right| _{\\omega = \\omega^0}$, then, according to the partial differentiation we calculate, we could get the next $\\omega^1$ by substract $\\eta \\left. \\frac{\\partial L}{\\partial \\omega} \\right| _{\\omega = \\omega^0}$ from $\\omega^0$, in which $\\eta$ is the learning rate that we defines, called hyperparameters. And by update $\\omega$ iteratively, we may get the minimum of $Loss$ and its minimum point.\nAnd this method can be restricted to local minima, so infect we may can use simulated annealing as an alternative?\nHowever, local minima isn’t always truly cause the problem when training.\nWhen it comes to mulvariable situation, we can also apply the steps above, just simply apply it to multible variable.\nUpgrade the Function $$ y = b + \\sum_{i = 1}^{len}{\\omega_ix_i} \\tag{Linear model} $$\nTake the data before into consideration comprehensively.\nAnd the model above is usually called Linear model.\nWhen $len$ increases, the predict of Function usually converges on a certain value.\nFunction improvement Piecewise Linear Curve It’s clear that the linear models are quiet simple, so wo can try to compound several linear models together to approach the curve.\n$$ All\\space Piecewise\\space Linear\\space Curve = constant + sum\\space of\\space a\\space set\\space of\\space piecewise\\space linear\\space function $$\nBeyond Piecewise Linear And when we are confronted with sth that beyond piecewise linear, we can approximate continuous curve by a piecewise linear curve, just sample a few points and cut the curve into sufficient pieces.\nGet some piecewise linear function (Sigmoid Function) In fact, these piecewise linear functions are usually composed by three pieces: zero, linear and then constant. Then we may can approach the piecewise linear functions by some basic functions, like:\n$$ y = c \\frac{1}{1 + e^{-(b + \\omega x_1)}} $$\nWhen $x_1 \\rightarrow +\\infty$ , $1 + e^{-(b + \\omega x_1)} \\rightarrow 1$, and $y \\rightarrow c$ . Apparently, when $x_1 \\rightarrow -\\infty$, $1 + e^{-(b + \\omega x_1)} \\rightarrow +\\infty$, and $y \\rightarrow 0$ , which can satisfy our expectation.\nAnd the function above is called sigmoid funcion, so\n$$ y = c \\space sigmoid(b + \\omega x_1) $$\nThe original piecewise linear function is usually called hard sigmoid.\nHere’s the effect of argument in sigmoid funcion.\n$\\omega$: change slopes\n$b$: shift\n$c$: change height\nAfter the bedding above, we can approach a specific funcion like:\n$$ y = b + \\sum_{i}{c_i\\space sigmoid(b_i + \\omega_i x_i)} $$\nAnd when we try to make the most of the data we obtained currently, we can change the function into:\n$$ y = b + \\sum_{i}{c_i \\space sigmoid(b_i + \\sum_{j}{w_{ij} x_j})} $$\nLet\n$$ r_i = b_i + \\sum_{j}{w_{ij} x_j} $$\nthen we can get matrix below:\n$$ r = b + \\begin{bmatrix} \\omega_{i1},\\space \\omega_{i2}\\space \\ldots\\space \\omega_{in} \\end{bmatrix} x $$\nwhere $r$, $b$, $\\omega_{ij}$, $x$ are all vector.\nAlso, we can define $a = \\sigma(r)$, and the function will be:\n$$ y = b + c^T a $$\nin a concise way.\nor\n$$ y = b + c^T \\sigma(b + {\\bf{W}} x) $$\nas well (notice that the first $b$ is a number and the second $b$ is a vector).\nThe loss of sigmoid funcion And it’s neccesary to introduce the parameters in the function above again:\n$x$: feature\n${\\bf{W}}, b, c^T, b$: Unknown parameters\nAnd by combining $\\bf{W}, \\bf{c}, \\bf{b}, b$ into a row, we can get a vector $\\bf{\\theta}$.\nSo, similarly, we can have loss function $L(\\theta)$, like:\n$$ L = \\frac 1N \\sum_{n}{e_n} $$\nAnd… the Optimization of Sigmoid Funtion Almost the same as before.\n$$ \\theta^i \\leftarrow \\theta^{i - 1} - \\eta {\\left. \\frac{\\partial L}{\\partial \\theta} \\right|}_{\\theta = \\theta^{i - 1}} $$\nWe can define a vector $g$ (gradient):\n$$ g = \\begin{pmatrix} {\\frac{\\partial L}{\\partial \\theta_1} \\Big|}{\\theta_1 = \\theta_1^{i - 1}} \\\\ {\\frac{\\partial L}{\\partial \\theta_2} \\Big|}{\\theta_2 = \\theta_2^{i - 1}} \\\\ \\vdots \\\\ {\\frac{\\partial L}{\\partial \\theta_n} \\Big|}_{\\theta_n = \\theta_n^{i - 1}} \\\\ \\end{pmatrix} $$\nSo, we have\n$$ \\theta^i \\leftarrow \\theta^{i - 1} - \\eta g \\\\ g = \\nabla L(\\theta^0) $$\nWhen we solve the problem in reality, we randomly divide the total data $N$ into several batchs, each called a batch. And for each batch, we can calculate the value of Loss, $L_i$, and individually use $L_i$ to update $\\theta$ , and when we see all the batched once, we say that we go through a epoch.\nAnother choice: ReLU If we don’t adapt the sigmoid function method to approach the piecewise linear function, we can also try Rectified Linear Unit(ReLU):\n$$ y = c \\space max(0, b + \\omega x_1) + c’ \\space max(0, b’ + \\omega x_1) $$\nSo we can approach the curve like this:\n$$ y = b + \\sum_{2i}{c_i \\space max(0, b_i + \\sum_{j}{w_{ij} x_j})} $$\ncompared to sigmoid function:\n$$ y = b + \\sum_{i}{c_i \\space sigmoid(b_i + \\sum_{j}{w_{ij} x_j})} $$\nAs a result, we can identify both sigmoid and ReLU into Activation function.\nFurther Improvement: Deep Learning So temporarily, we still assume that we take sigmoid as activation function, take $\\bf{a} = \\sigma(\\bf{r})$ , the sigmoid we have mentioned:\n$$ y = b + \\bf{c}^T \\bf{a} $$\nNow we can take a step further: can we put $a$ as in input into sigmoid function, like:\n$$ \\bf{a}’ = \\sigma (\\bf{b}’ + \\bf{W}’\\bf{a}) $$\nThis is called adding a layer in funcion. By doing this, we can greatly improve the accuracy of our model.\nAnd we can name one sigmoid function in the model by Neuron, and the whole model can be named as Neural Network.\nAmong the model, we’ve got many layers, which can be named as hidden layer, so the whole technique can also called Deep Learning.\n$$ Deep = Many\\space hidden\\space layers $$\nA few examples AlexNet(2012): 8 layers\nVGG(2014): 19 layers\nGoogleNet(2014): 22 layers\nResidual Net(2015): 152 layers\nThinking: Why deep, instead of broad?\nWhy not deeper? Overfitting: Better on training data, worse on unseen data.\n",
+  "wordCount" : "1212",
   "inLanguage": "zh",
   "datePublished": "2024-10-28T23:24:11+08:00",
   "dateModified": "2024-10-30T02:45:11+08:00",
@@ -213,7 +213,7 @@
     <div class="post-description">
       Machine Learning Concepts
     </div>
-    <div class="post-meta"><span title='2024-10-28 23:24:11 +0800 CST'>2024-10-28</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1181 字&nbsp;·&nbsp;Farewe1ll
+    <div class="post-meta"><span title='2024-10-28 23:24:11 +0800 CST'>2024-10-28</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1212 字&nbsp;·&nbsp;Farewe1ll
 
 </div>
   </header> <div class="toc">
@@ -297,7 +297,7 @@ $$</p>
 <p>If $y$ and $\hat{y}$ are both probability distributions $\rightarrow$ Cross-entropy</p>
 <p>Afterwards, you can use heatmap to visualize the output of function $L$.</p>
 <h3 id="3-optimization">3. Optimization<a hidden class="anchor" aria-hidden="true" href="#3-optimization">#</a></h3>
-<p>To find the minimum of Function $L$ and its input $w^<em>, b^</em>, \ldots$ .</p>
+<p>To find the minimum of Function $L$ and its input $w^{*}, b^{*}, \ldots$ .</p>
 <p>The method is called <strong>Gradian Descent</strong>,</p>
 <p>So we can start with one variable situation.</p>
 <p>While solving the one variable situation, let&rsquo;s call it $\omega$ , we can first <strong>randomly</strong> pick an initial value $\omega^0$, and we can compute $\left. \frac{\partial L}{\partial \omega} \right| _{\omega = \omega^0}$, then, according to the partial differentiation we calculate, we could get the next $\omega^1$ by substract $\eta \left. \frac{\partial L}{\partial \omega} \right| _{\omega = \omega^0}$ from $\omega^0$, in which $\eta$ is the learning rate that we defines, called hyperparameters. And by update $\omega$ iteratively, we may get the minimum of $Loss$ and its minimum point.</p>
@@ -315,7 +315,7 @@ $$</p>
 <h3 id="piecewise-linear-curve">Piecewise Linear Curve<a hidden class="anchor" aria-hidden="true" href="#piecewise-linear-curve">#</a></h3>
 <p>It&rsquo;s clear that the linear models are quiet simple, so wo can try to compound several linear models together to approach the curve.</p>
 <p>$$
-All Piecewise Linear Curve = constant + sum of a set of piecewise linear function
+All\space Piecewise\space Linear\space Curve = constant + sum\space of\space a\space set\space of\space piecewise\space linear\space function
 $$</p>
 <h3 id="beyond-piecewise-linear">Beyond Piecewise Linear<a hidden class="anchor" aria-hidden="true" href="#beyond-piecewise-linear">#</a></h3>
 <p>And when we are confronted with sth that beyond piecewise linear, we can approximate continuous curve by a piecewise linear curve, just sample a few points and cut the curve into sufficient pieces.</p>
@@ -324,7 +324,7 @@ $$</p>
 <p>$$
 y = c \frac{1}{1 + e^{-(b + \omega x_1)}}
 $$</p>
-<p>When $x_1 \rightarrow \infty$ , $1 + e^{-(b + \omega x_1)} \rightarrow 1$, and $y \rightarrow c$ . Apparently, when $x_1 \rightarrow -\infty$, $1 + e^{-(b + \omega x_1)} \rightarrow \infty$, and $y \rightarrow 0$ ,  which can satisfy our needs.</p>
+<p>When $x_1 \rightarrow +\infty$ , $1 + e^{-(b + \omega x_1)} \rightarrow 1$, and $y \rightarrow c$ . Apparently, when $x_1 \rightarrow -\infty$, $1 + e^{-(b + \omega x_1)} \rightarrow +\infty$, and $y \rightarrow 0$ , which can satisfy our expectation.</p>
 <p>And the function above is called <strong>sigmoid funcion</strong>, so</p>
 <p>$$
 y = c \space sigmoid(b + \omega x_1)
@@ -356,48 +356,55 @@ r_i = b_i + \sum_{j}{w_{ij} x_j}
 $$</p>
 <p>then we can get matrix below:</p>
 <p>$$
-\begin{bmatrix} r \end{bmatrix} = \begin{bmatrix} \bf{b} \end{bmatrix} + \begin{bmatrix} \bf{\omega}<em>{i1} \space \bf{\omega}</em>{i2} \space \ldots \space \bf{\omega}_{in} \end{bmatrix} \begin{bmatrix} \bf{x} \end{bmatrix}
+r = b + \begin{bmatrix} \omega_{i1},\space \omega_{i2}\space \ldots\space \omega_{in} \end{bmatrix} x
 $$</p>
-<p>where $\bf{r}$, $\bf{b}$, $\bf{\omega}_{ij}$, $\bf{x}$ are all vector.</p>
-<p>Also, we can define $\bf{a} = \sigma(\bf{r})$, and the function will be:</p>
+<p>where $r$, $b$, $\omega_{ij}$, $x$ are all vector.</p>
+<p>Also, we can define $a = \sigma(r)$, and the function will be:</p>
 <p>$$
-y = b + \bf{c}^T \bf{a}
+y = b + c^T a
 $$</p>
 <p>in a concise way.</p>
-<p>or:</p>
+<p>or</p>
 <p>$$
-y = b + \bf{c}^T \sigma(\bf{b} + \bf{W}\bf{x})
+y = b + c^T \sigma(b + {\bf{W}} x)
 $$</p>
-<p>in a linear algebra way.</p>
+<p>as well (notice that the first $b$ is a number and the second $b$ is a vector).</p>
 <h3 id="the-loss-of-sigmoid-funcion">The loss of sigmoid funcion<a hidden class="anchor" aria-hidden="true" href="#the-loss-of-sigmoid-funcion">#</a></h3>
 <p>And it&rsquo;s neccesary to introduce the parameters in the function above again:</p>
 <ul>
 <li>
-<p>$\bf{x}$: feature</p>
+<p>$x$: feature</p>
 </li>
 <li>
-<p>$\bf{W}, b, \bf{c}^T, \bf{b}$: Unknown parameters</p>
+<p>${\bf{W}}, b, c^T, b$: Unknown parameters</p>
 </li>
 </ul>
 <p>And by combining $\bf{W}, \bf{c}, \bf{b}, b$ into a row, we can get a vector $\bf{\theta}$.</p>
-<p>So, similarly, we can have loss function $L(\bf{\theta})$, like:</p>
+<p>So, similarly, we can have loss function $L(\theta)$, like:</p>
 <p>$$
 L = \frac 1N \sum_{n}{e_n}
 $$</p>
 <h3 id="and-the-optimization-of-sigmoid-funtion">And&hellip; the Optimization of Sigmoid Funtion<a hidden class="anchor" aria-hidden="true" href="#and-the-optimization-of-sigmoid-funtion">#</a></h3>
 <p>Almost the same as before.</p>
 <p>$$
-\begin{bmatrix} \bf{\theta}^i \end{bmatrix} \leftarrow \begin{bmatrix} \bf{\theta}^{i - 1} \end{bmatrix} - \begin{bmatrix} \bf{\eta \left. \frac{\partial L}{\partial \theta} \right|_{\theta = \theta^{i - 1}}} \end{bmatrix}
+\theta^i \leftarrow \theta^{i - 1} - \eta {\left. \frac{\partial L}{\partial \theta} \right|}_{\theta = \theta^{i - 1}}
 $$</p>
-<p>We can define $\bf{g}$ (gradient):</p>
+<p>We can define a vector $g$ (gradient):</p>
 <p>$$
-\bf{g} = \bf{\left. \frac{\partial L}{\partial \theta} \right|_{\theta = \theta^{i - 1}}}
+g =
+\begin{pmatrix}
+{\frac{\partial L}{\partial \theta_1} \Big|}<em>{\theta_1 = \theta_1^{i - 1}} \\
+{\frac{\partial L}{\partial \theta_2} \Big|}</em>{\theta_2 = \theta_2^{i - 1}} \\
+\vdots \\
+{\frac{\partial L}{\partial \theta_n} \Big|}_{\theta_n = \theta_n^{i - 1}} \\
+\end{pmatrix}
 $$</p>
 <p>So, we have</p>
 <p>$$
-\bf{g} = \nabla L(\bf{\theta^0})
+\theta^i \leftarrow \theta^{i - 1} - \eta g \\
+g = \nabla L(\theta^0)
 $$</p>
-<p>When we solve the problem in reality, we ramdomly divide the total data $N$ into several batchs, each called a batch. And for each batch, we can calculate the value of Loss, $L_i$, and individually use $L_i$ to <strong>update</strong> $\bf{\theta}$ , and when <strong>we see all the batched once</strong>, we say that we go through <em><strong>a epoch</strong></em>.</p>
+<p>When we solve the problem in reality, we randomly divide the total data $N$ into several batchs, each called a batch. And for each batch, we can calculate the value of Loss, $L_i$, and individually use $L_i$ to <strong>update</strong> $\theta$ , and when <strong>we see all the batched once</strong>, we say that we go through <em><strong>a epoch</strong></em>.</p>
 <h3 id="another-choice-relu">Another choice: ReLU<a hidden class="anchor" aria-hidden="true" href="#another-choice-relu">#</a></h3>
 <p>If we don&rsquo;t adapt the sigmoid function method to approach the piecewise linear function, we can also try Rectified Linear Unit(ReLU):</p>
 <p>$$
@@ -493,7 +500,7 @@ $$</p>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="https://Farewe1ll.github.io/">Blog of Farewe1ll</a></span> · 
+        <span>&copy; 2025 <a href="https://Farewe1ll.github.io/">Blog of Farewe1ll</a></span> · 
 
     <span>
         Powered by
