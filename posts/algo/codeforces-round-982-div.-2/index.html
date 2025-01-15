@@ -224,10 +224,10 @@
 
         <div class="inner"><nav id="TableOfContents">
   <ul>
-    <li><a href="#a-rectangle-arrangementhttpscodeforcescomcontest2027problema"><a href="https://codeforces.com/contest/2027/problem/A">A. Rectangle Arrangement</a></a></li>
-    <li><a href="#b-stalin-sorthttpscodeforcescomcontest2027problemb"><a href="https://codeforces.com/contest/2027/problem/B">B. Stalin Sort</a></a></li>
-    <li><a href="#c-add-zeroshttpscodeforcescomcontest2027problemc"><a href="https://codeforces.com/contest/2027/problem/C">C. Add Zeros</a></a></li>
-    <li><a href="#d1-the-endspeaker-easy-versionhttpscodeforcescomcontest2027problemd1"><a href="https://codeforces.com/contest/2027/problem/D1">D1. The Endspeaker (Easy Version)</a></a></li>
+    <li><a href="#a-rectangle-arrangement">A. Rectangle Arrangement</a></li>
+    <li><a href="#b-stalin-sort">B. Stalin Sort</a></li>
+    <li><a href="#c-add-zeros">C. Add Zeros</a></li>
+    <li><a href="#d1-the-endspeaker-easy-version">D1. The Endspeaker (Easy Version)</a></li>
   </ul>
 </nav>
         </div>
@@ -238,7 +238,7 @@
 <p>这场前半部分打得还行，可惜卡 D 了。</p>
 <p>差不多算是想到做法了，但是调的有点糟。。。</p>
 <p>哎 dp</p>
-<h2 id="a-rectangle-arrangementhttpscodeforcescomcontest2027problema"><a href="https://codeforces.com/contest/2027/problem/A">A. Rectangle Arrangement</a><a hidden class="anchor" aria-hidden="true" href="#a-rectangle-arrangementhttpscodeforcescomcontest2027problema">#</a></h2>
+<h2 id="a-rectangle-arrangement">A. Rectangle Arrangement<a hidden class="anchor" aria-hidden="true" href="#a-rectangle-arrangement">#</a></h2>
 <p>看题没看懂在干啥，但是读样例解释看懂了x</p>
 <p>考虑每一个可能的形状，通过平移它的边，其周长必然可以等价转换为一个矩形。</p>
 <p>故我们实际上考虑的是这个矩形怎么维护。</p>
@@ -297,7 +297,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="b-stalin-sorthttpscodeforcescomcontest2027problemb"><a href="https://codeforces.com/contest/2027/problem/B">B. Stalin Sort</a><a hidden class="anchor" aria-hidden="true" href="#b-stalin-sorthttpscodeforcescomcontest2027problemb">#</a></h2>
+</div><h2 id="b-stalin-sort">B. Stalin Sort<a hidden class="anchor" aria-hidden="true" href="#b-stalin-sort">#</a></h2>
 <p>草 Cf better 加载出翻译的时候我人笑飞了</p>
 <p>题意疑似有点地狱笑话</p>
 <p>首先读完题意之后我是一头雾水基本没有任何思路的</p>
@@ -378,7 +378,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="c-add-zeroshttpscodeforcescomcontest2027problemc"><a href="https://codeforces.com/contest/2027/problem/C">C. Add Zeros</a><a hidden class="anchor" aria-hidden="true" href="#c-add-zeroshttpscodeforcescomcontest2027problemc">#</a></h2>
+</div><h2 id="c-add-zeros">C. Add Zeros<a hidden class="anchor" aria-hidden="true" href="#c-add-zeros">#</a></h2>
 <p>我们的目标是数组长度的最大值，故而对于某种情形，我们最关心的应该是当前数组的长度。</p>
 <p>故而考虑每次操作实际上是在 $\lvert a \rvert = a_i + i - 1$ 时，可以选择将当前数组长度增加 $i - 1$。</p>
 <p>因为是往数组末尾添加 $0$，故不用考虑某次操作后可选择的操作增多。考虑到达某个数组长度时，我们并不关心是如何到达的，而可以直接以当前状态拓展其余状态，可以直接记忆化。</p>
@@ -508,7 +508,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="d1-the-endspeaker-easy-versionhttpscodeforcescomcontest2027problemd1"><a href="https://codeforces.com/contest/2027/problem/D1">D1. The Endspeaker (Easy Version)</a><a hidden class="anchor" aria-hidden="true" href="#d1-the-endspeaker-easy-versionhttpscodeforcescomcontest2027problemd1">#</a></h2>
+</div><h2 id="d1-the-endspeaker-easy-version">D1. The Endspeaker (Easy Version)<a hidden class="anchor" aria-hidden="true" href="#d1-the-endspeaker-easy-version">#</a></h2>
 <p>赛时看出来是二维 dp 加前缀和二分，但是调了一个小时没搞定。。。</p>
 <p>寄</p>
 <p>还没来得及补题，回头找机会补上罢。。。</p>
