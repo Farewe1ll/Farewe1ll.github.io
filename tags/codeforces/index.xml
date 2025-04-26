@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Codeforces on Blog of Farewe1ll</title>
+    <link>https://Farewe1ll.github.io/tags/codeforces/</link>
+    <description>Recent content in Codeforces on Blog of Farewe1ll</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 14 Jan 2025 13:26:32 +0800</lastBuildDate>
+    <atom:link href="https://Farewe1ll.github.io/tags/codeforces/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Codeforces Round 992 (Div. 2) (A~E)</title>
+      <link>https://Farewe1ll.github.io/posts/algo/codeforces-round-992-div.-2/</link>
+      <pubDate>Tue, 14 Jan 2025 13:26:32 +0800</pubDate>
+      <guid>https://Farewe1ll.github.io/posts/algo/codeforces-round-992-div.-2/</guid>
+      <description>Codeforces Round 992 (Div. 2) VP 解题报告</description>
+    </item>
+    <item>
+      <title>Codeforces Round 982 (Div. 2)</title>
+      <link>https://Farewe1ll.github.io/posts/algo/codeforces-round-982-div.-2/</link>
+      <pubDate>Sun, 27 Oct 2024 18:36:45 +0800</pubDate>
+      <guid>https://Farewe1ll.github.io/posts/algo/codeforces-round-982-div.-2/</guid>
+      <description>Codeforces Round 982 (Div. 2) 解题报告</description>
+    </item>
+    <item>
+      <title>Codeforces Round 981 (Div. 3)</title>
+      <link>https://Farewe1ll.github.io/posts/algo/codeforces-round-981-div.-3/</link>
+      <pubDate>Fri, 25 Oct 2024 01:31:17 +0800</pubDate>
+      <guid>https://Farewe1ll.github.io/posts/algo/codeforces-round-981-div.-3/</guid>
+      <description>Codeforces Round 981 (Div. 3) 解题报告</description>
+    </item>
+  </channel>
+</rss>

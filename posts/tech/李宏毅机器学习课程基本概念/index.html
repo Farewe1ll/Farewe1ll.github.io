@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>李宏毅机器学习课程基本概念 | Blog of Farewe1ll</title>
+<meta name="keywords" content="Machine Learning, ML, Hung-yi Lee, Concept">
+<meta name="description" content="Machine Learning Concepts">
+<meta name="author" content="Farewe1ll">
+<link rel="canonical" href="https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d09f7e3e065a66473e80654500170f16c8ca2b76316230675c9db11549a2b71d.css" integrity="sha256-0J9&#43;PgZaZkc&#43;gGVFABcPFsjKK3YxYjBnXJ2xFUmitx0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://Farewe1ll.github.io/img/Q.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Farewe1ll.github.io/img/Q.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Farewe1ll.github.io/img/Q.png">
+<link rel="apple-touch-icon" href="https://Farewe1ll.github.io/img/Q.png">
+<link rel="mask-icon" href="https://Farewe1ll.github.io/img/Q.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
+  integrity="sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib"
+  crossorigin="anonymous"
+>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"
+  integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh"
+  crossorigin="anonymous">
+</script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"
+  integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+  crossorigin="anonymous"
+  onload="renderMathInElement(document.body);">
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},      
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+<meta property="og:title" content="李宏毅机器学习课程基本概念" />
+<meta property="og:description" content="Machine Learning Concepts" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-28T23:24:11+08:00" />
+<meta property="article:modified_time" content="2024-10-30T02:45:11+08:00" /><meta property="og:site_name" content="Blog of Farewe1ll" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="李宏毅机器学习课程基本概念"/>
+<meta name="twitter:description" content="Machine Learning Concepts"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "",
+      "item": "https://Farewe1ll.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "科技",
+      "item": "https://Farewe1ll.github.io/posts/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "李宏毅机器学习课程基本概念",
+      "item": "https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "李宏毅机器学习课程基本概念",
+  "name": "李宏毅机器学习课程基本概念",
+  "description": "Machine Learning Concepts",
+  "keywords": [
+    "Machine Learning", "ML", "Hung-yi Lee", "Concept"
+  ],
+  "articleBody": "李宏毅机器学习课程基本概念 Different types of Functions Regression: 输出为数值的函数\nClassification: 输出为类别的函数 可以看成离散版的 Regression ?\nStructured Learning: create sth with structure (image, document, etc.)\nSteps to solve the Function The process by applying the steps below is called Training.\n1. Function with Unknown Parameters Guess the form of the Function based on domain knowledge.\n$$ Function\\space with\\space Unknown\\space Parameters \\to Model $$weight: the parameter that times with $x$\nbias: the const value\n2. Define Loss from Training Data Loss is a function that evaluates the parameters.\n$$ L(b, w, \\ldots) $$Let\n$$ e_i = \\lvert y_i - \\hat{y_i} \\rvert \\tag{MAE} $$And we have\n$$ L = \\frac 1n \\sum_{n}{e_n} $$And in fact, we can alse define\n$$ e_i = (y_i - \\hat{y_i})^2 \\tag{MSE} $$If $y$ and $\\hat{y}$ are both probability distributions $\\rightarrow$ Cross-entropy\nAfterwards, you can use heatmap to visualize the output of function $L$.\n3. Optimization To find the minimum of Function $L$ and its input $w^{*}, b^{*}, \\ldots$ .\nThe method is called Gradian Descent,\nSo we can start with one variable situation.\nWhile solving the one variable situation, let’s call it $\\omega$ , we can first randomly pick an initial value $\\omega^0$, and we can compute $\\left. \\frac{\\partial L}{\\partial \\omega} \\right| _{\\omega = \\omega^0}$, then, according to the partial differentiation we calculate, we could get the next $\\omega^1$ by substract $\\eta \\left. \\frac{\\partial L}{\\partial \\omega} \\right| _{\\omega = \\omega^0}$ from $\\omega^0$, in which $\\eta$ is the learning rate that we defines, called hyperparameters. And by update $\\omega$ iteratively, we may get the minimum of $Loss$ and its minimum point.\nAnd this method can be restricted to local minima, so infect we may can use simulated annealing as an alternative?\nHowever, local minima isn’t always truly cause the problem when training.\nWhen it comes to mulvariable situation, we can also apply the steps above, just simply apply it to multible variable.\nUpgrade the Function $$ y = b + \\sum_{i = 1}^{len}{\\omega_ix_i} \\tag{Linear model} $$Take the data before into consideration comprehensively.\nAnd the model above is usually called Linear model.\nWhen $len$ increases, the predict of Function usually converges on a certain value.\nFunction improvement Piecewise Linear Curve It’s clear that the linear models are quiet simple, so wo can try to compound several linear models together to approach the curve.\n$$ All\\space Piecewise\\space Linear\\space Curve = constant + sum\\space of\\space a\\space set\\space of\\space piecewise\\space linear\\space function $$Beyond Piecewise Linear And when we are confronted with sth that beyond piecewise linear, we can approximate continuous curve by a piecewise linear curve, just sample a few points and cut the curve into sufficient pieces.\nGet some piecewise linear function (Sigmoid Function) In fact, these piecewise linear functions are usually composed by three pieces: zero, linear and then constant. Then we may can approach the piecewise linear functions by some basic functions, like:\n$$ y = c \\frac{1}{1 + e^{-(b + \\omega x_1)}} $$When $x_1 \\rightarrow +\\infty$ , $1 + e^{-(b + \\omega x_1)} \\rightarrow 1$, and $y \\rightarrow c$ . Apparently, when $x_1 \\rightarrow -\\infty$, $1 + e^{-(b + \\omega x_1)} \\rightarrow +\\infty$, and $y \\rightarrow 0$ , which can satisfy our expectation.\nAnd the function above is called sigmoid funcion, so\n$$ y = c \\space sigmoid(b + \\omega x_1) $$The original piecewise linear function is usually called hard sigmoid.\nHere’s the effect of argument in sigmoid funcion.\n$\\omega$: change slopes\n$b$: shift\n$c$: change height\nAfter the bedding above, we can approach a specific funcion like:\n$$ y = b + \\sum_{i}{c_i\\space sigmoid(b_i + \\omega_i x_i)} $$And when we try to make the most of the data we obtained currently, we can change the function into:\n$$ y = b + \\sum_{i}{c_i \\space sigmoid(b_i + \\sum_{j}{w_{ij} x_j})} $$Let\n$$ r_i = b_i + \\sum_{j}{w_{ij} x_j} $$then we can get matrix below:\n$$ r = b + \\begin{bmatrix} \\omega_{i1},\\space \\omega_{i2}\\space \\ldots\\space \\omega_{in} \\end{bmatrix} x $$where $r$, $b$, $\\omega_{ij}$, $x$ are all vector.\nAlso, we can define $a = \\sigma(r)$, and the function will be:\n$$ y = b + c^T a $$in a concise way.\nor\n$$ y = b + c^T \\sigma(b + {\\bf{W}} x) $$as well (notice that the first $b$ is a number and the second $b$ is a vector).\nThe loss of sigmoid funcion And it’s neccesary to introduce the parameters in the function above again:\n$x$: feature\n${\\bf{W}}, b, c^T, b$: Unknown parameters\nAnd by combining $\\bf{W}, \\bf{c}, \\bf{b}, b$ into a row, we can get a vector $\\bf{\\theta}$.\nSo, similarly, we can have loss function $L(\\theta)$, like:\n$$ L = \\frac 1N \\sum_{n}{e_n} $$And… the Optimization of Sigmoid Funtion Almost the same as before.\n$$ \\theta^i \\leftarrow \\theta^{i - 1} - \\eta {\\left. \\frac{\\partial L}{\\partial \\theta} \\right|}_{\\theta = \\theta^{i - 1}} $$We can define a vector $g$ (gradient):\n$$ g = \\begin{pmatrix} {\\frac{\\partial L}{\\partial \\theta_1} \\Big|}_{\\theta_1=\\theta_1^{i-1}} \\\\ {\\frac{\\partial L}{\\partial \\theta_2} \\Big|}_{\\theta_2=\\theta_2^{i-1}} \\\\ \\vdots \\\\ {\\frac{\\partial L}{\\partial \\theta_n} \\Big|}_{\\theta_n=\\theta_n^{i-1}} \\\\ \\end{pmatrix} $$ So, we have\n$$ \\theta^i \\leftarrow \\theta^{i - 1} - \\eta g \\\\ g = \\nabla L(\\theta^0) $$When we solve the problem in reality, we randomly divide the total data $N$ into several batchs, each called a batch. And for each batch, we can calculate the value of Loss, $L_i$, and individually use $L_i$ to update $\\theta$ , and when we see all the batched once, we say that we go through an epoch.\nAnother choice: ReLU If we don’t adapt the sigmoid function method to approach the piecewise linear function, we can also try Rectified Linear Unit(ReLU):\n$$ y = c \\space max(0, b + \\omega x_1) + c' \\space max(0, b' + \\omega x_1) $$So we can approach the curve like this:\n$$ y = b + \\sum_{2i}{c_i \\space max(0, b_i + \\sum_{j}{w_{ij} x_j})} $$compared to sigmoid function:\n$$ y = b + \\sum_{i}{c_i \\space sigmoid(b_i + \\sum_{j}{w_{ij} x_j})} $$As a result, we can identify both sigmoid and ReLU into Activation function.\nFurther Improvement: Deep Learning So temporarily, we still assume that we take sigmoid as activation function, take $\\bf{a} = \\sigma(\\bf{r})$ , the sigmoid we have mentioned:\n$$ y = b + \\bf{c}^T \\bf{a} $$Now we can take a step further: can we put $a$ as in input into sigmoid function, like:\n$$ \\bf{a}' = \\sigma (\\bf{b}' + \\bf{W}'\\bf{a}) $$This is called adding a layer in funcion. By doing this, we can greatly improve the accuracy of our model.\nAnd we can name one sigmoid function in the model by Neuron, and the whole model can be named as Neural Network.\nAmong the model, we’ve got many layers, which can be named as hidden layer, so the whole technique can also called Deep Learning.\n$$ Deep = Many\\space hidden\\space layers $$A few examples AlexNet(2012): 8 layers\nVGG(2014): 19 layers\nGoogleNet(2014): 22 layers\nResidual Net(2015): 152 layers\nThinking: Why deep, instead of broad?\nWhy not deeper? Overfitting: Better on training data, worse on unseen data.\n",
+  "wordCount" : "1176",
+  "inLanguage": "zh",
+  "datePublished": "2024-10-28T23:24:11+08:00",
+  "dateModified": "2024-10-30T02:45:11+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Farewe1ll"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Farewe1ll.github.io/posts/tech/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog of Farewe1ll",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Farewe1ll.github.io/img/Q.png"
+    }
+  }
+}
+</script>
+    
+        <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
+  integrity="sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib"
+  crossorigin="anonymous"
+>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"
+  integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh"
+  crossorigin="anonymous">
+</script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"
+  integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+  crossorigin="anonymous"
+  onload="renderMathInElement(document.body);">
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},      
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+    
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Farewe1ll.github.io/" accesskey="h" title="Blog of Farewe1ll (Alt + H)">
+                <img src="https://Farewe1ll.github.io/img/Q.png" alt="" aria-label="logo"
+                    height="35">Blog of Farewe1ll</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://Farewe1ll.github.io/search" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Farewe1ll.github.io/" title="主页">
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Farewe1ll.github.io/posts" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Farewe1ll.github.io/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Farewe1ll.github.io/tags" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Farewe1ll.github.io/about" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Farewe1ll.github.io/links" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://Farewe1ll.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://Farewe1ll.github.io/posts/"></a>&nbsp;»&nbsp;<a href="https://Farewe1ll.github.io/posts/tech/">科技</a></div>
+    <h1 class="post-title entry-hint-parent">
+      李宏毅机器学习课程基本概念
+    </h1>
+    <div class="post-description">
+      Machine Learning Concepts
+    </div>
+    <div class="post-meta"><span title='2024-10-28 23:24:11 +0800 CST'>2024-10-28</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1176 字&nbsp;·&nbsp;Farewe1ll
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#different-types-of-functions">Different types of Functions</a></li>
+    <li><a href="#steps-to-solve-the-function">Steps to solve the Function</a>
+      <ul>
+        <li><a href="#1-function-with-unknown-parameters">1. Function with Unknown Parameters</a></li>
+        <li><a href="#2-define-loss-from-training-data">2. Define Loss from Training Data</a></li>
+        <li><a href="#3-optimization">3. Optimization</a></li>
+      </ul>
+    </li>
+    <li><a href="#upgrade-the-function">Upgrade the Function</a></li>
+    <li><a href="#function-improvement">Function improvement</a>
+      <ul>
+        <li><a href="#piecewise-linear-curve">Piecewise Linear Curve</a></li>
+        <li><a href="#beyond-piecewise-linear">Beyond Piecewise Linear</a></li>
+        <li><a href="#get-some-piecewise-linear-function-sigmoid-function">Get some piecewise linear function (Sigmoid Function)</a></li>
+        <li><a href="#the-loss-of-sigmoid-funcion">The loss of sigmoid funcion</a></li>
+        <li><a href="#and-the-optimization-of-sigmoid-funtion">And&hellip; the Optimization of Sigmoid Funtion</a></li>
+        <li><a href="#another-choice-relu">Another choice: ReLU</a></li>
+      </ul>
+    </li>
+    <li><a href="#further-improvement-deep-learning">Further Improvement: Deep Learning</a>
+      <ul>
+        <li><a href="#a-few-examples">A few examples</a></li>
+        <li><a href="#thinking">Thinking:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="李宏毅机器学习课程基本概念">李宏毅机器学习课程基本概念<a hidden class="anchor" aria-hidden="true" href="#李宏毅机器学习课程基本概念">#</a></h1>
+<h2 id="different-types-of-functions">Different types of Functions<a hidden class="anchor" aria-hidden="true" href="#different-types-of-functions">#</a></h2>
+<ul>
+<li>
+<p>Regression: 输出为数值的函数</p>
+</li>
+<li>
+<p>Classification: 输出为类别的函数 可以看成离散版的 Regression ?</p>
+</li>
+<li>
+<p>Structured Learning: create sth with structure (image, document, etc.)</p>
+</li>
+</ul>
+<h2 id="steps-to-solve-the-function">Steps to solve the Function<a hidden class="anchor" aria-hidden="true" href="#steps-to-solve-the-function">#</a></h2>
+<p>The process by applying the steps below is called <strong>Training</strong>.</p>
+<h3 id="1-function-with-unknown-parameters">1. Function with Unknown Parameters<a hidden class="anchor" aria-hidden="true" href="#1-function-with-unknown-parameters">#</a></h3>
+<p>Guess the form of the Function based on domain knowledge.</p>
+$$
+Function\space with\space Unknown\space Parameters \to Model
+$$<p>weight: the parameter that times with $x$</p>
+<p>bias: the const value</p>
+<h3 id="2-define-loss-from-training-data">2. Define Loss from Training Data<a hidden class="anchor" aria-hidden="true" href="#2-define-loss-from-training-data">#</a></h3>
+<p>Loss is a function that evaluates the parameters.</p>
+$$
+L(b, w, \ldots)
+$$<p>Let</p>
+$$
+e_i = \lvert y_i - \hat{y_i} \rvert \tag{MAE}
+$$<p>And we have</p>
+$$
+L = \frac 1n \sum_{n}{e_n}
+$$<p>And in fact, we can alse define</p>
+$$
+e_i = (y_i - \hat{y_i})^2 \tag{MSE}
+$$<p>If $y$ and $\hat{y}$ are both probability distributions $\rightarrow$ Cross-entropy</p>
+<p>Afterwards, you can use heatmap to visualize the output of function $L$.</p>
+<h3 id="3-optimization">3. Optimization<a hidden class="anchor" aria-hidden="true" href="#3-optimization">#</a></h3>
+<p>To find the minimum of Function $L$ and its input $w^{*}, b^{*}, \ldots$ .</p>
+<p>The method is called <strong>Gradian Descent</strong>,</p>
+<p>So we can start with one variable situation.</p>
+<p>While solving the one variable situation, let&rsquo;s call it $\omega$ , we can first <strong>randomly</strong> pick an initial value $\omega^0$, and we can compute $\left. \frac{\partial L}{\partial \omega} \right| _{\omega = \omega^0}$, then, according to the partial differentiation we calculate, we could get the next $\omega^1$ by substract $\eta \left. \frac{\partial L}{\partial \omega} \right| _{\omega = \omega^0}$ from $\omega^0$, in which $\eta$ is the learning rate that we defines, called hyperparameters. And by update $\omega$ iteratively, we may get the minimum of $Loss$ and its minimum point.</p>
+<p>And this method can be restricted to local minima, so infect we may can use simulated annealing as an alternative?</p>
+<p>However, local minima isn&rsquo;t always truly cause the problem when training.</p>
+<p>When it comes to mulvariable situation, we can also apply the steps above, just simply apply it to multible variable.</p>
+<h2 id="upgrade-the-function">Upgrade the Function<a hidden class="anchor" aria-hidden="true" href="#upgrade-the-function">#</a></h2>
+$$
+y = b + \sum_{i = 1}^{len}{\omega_ix_i} \tag{Linear model}
+$$<p>Take the data before into consideration comprehensively.</p>
+<p>And the model above is usually called <em><strong>Linear model</strong></em>.</p>
+<p>When $len$ increases, the predict of Function usually converges on a certain value.</p>
+<h2 id="function-improvement">Function improvement<a hidden class="anchor" aria-hidden="true" href="#function-improvement">#</a></h2>
+<h3 id="piecewise-linear-curve">Piecewise Linear Curve<a hidden class="anchor" aria-hidden="true" href="#piecewise-linear-curve">#</a></h3>
+<p>It&rsquo;s clear that the linear models are quiet simple, so wo can try to compound several linear models together to approach the curve.</p>
+$$
+All\space Piecewise\space Linear\space Curve = constant + sum\space of\space a\space set\space of\space piecewise\space linear\space function
+$$<h3 id="beyond-piecewise-linear">Beyond Piecewise Linear<a hidden class="anchor" aria-hidden="true" href="#beyond-piecewise-linear">#</a></h3>
+<p>And when we are confronted with sth that beyond piecewise linear, we can approximate continuous curve by a piecewise linear curve, just sample a few points and cut the curve into sufficient pieces.</p>
+<h3 id="get-some-piecewise-linear-function-sigmoid-function">Get some piecewise linear function (Sigmoid Function)<a hidden class="anchor" aria-hidden="true" href="#get-some-piecewise-linear-function-sigmoid-function">#</a></h3>
+<p>In fact, these piecewise linear functions are usually composed by three pieces: zero, linear and then constant. Then we may can approach the piecewise linear functions by some basic functions, like:</p>
+$$
+y = c \frac{1}{1 + e^{-(b + \omega x_1)}}
+$$<p>When $x_1 \rightarrow +\infty$ , $1 + e^{-(b + \omega x_1)} \rightarrow 1$, and $y \rightarrow c$ . Apparently, when $x_1 \rightarrow -\infty$, $1 + e^{-(b + \omega x_1)} \rightarrow +\infty$, and $y \rightarrow 0$ , which can satisfy our expectation.</p>
+<p>And the function above is called <strong>sigmoid funcion</strong>, so</p>
+$$
+y = c \space sigmoid(b + \omega x_1)
+$$<p>The original piecewise linear function is usually called <strong>hard sigmoid</strong>.</p>
+<p>Here&rsquo;s the effect of argument in sigmoid funcion.</p>
+<ul>
+<li>
+<p>$\omega$: change slopes</p>
+</li>
+<li>
+<p>$b$: shift</p>
+</li>
+<li>
+<p>$c$: change height</p>
+</li>
+</ul>
+<p>After the bedding above, we can approach a specific funcion like:</p>
+$$
+y = b + \sum_{i}{c_i\space sigmoid(b_i + \omega_i x_i)}
+$$<p>And when we try to make the most of the data we obtained currently, we can change the function into:</p>
+$$
+y = b + \sum_{i}{c_i \space sigmoid(b_i + \sum_{j}{w_{ij} x_j})}
+$$<p>Let</p>
+$$
+r_i = b_i + \sum_{j}{w_{ij} x_j}
+$$<p>then we can get matrix below:</p>
+$$
+r = b + \begin{bmatrix} \omega_{i1},\space \omega_{i2}\space \ldots\space \omega_{in} \end{bmatrix} x
+$$<p>where $r$, $b$, $\omega_{ij}$, $x$ are all vector.</p>
+<p>Also, we can define $a = \sigma(r)$, and the function will be:</p>
+$$
+y = b + c^T a
+$$<p>in a concise way.</p>
+<p>or</p>
+$$
+y = b + c^T \sigma(b + {\bf{W}} x)
+$$<p>as well (notice that the first $b$ is a number and the second $b$ is a vector).</p>
+<h3 id="the-loss-of-sigmoid-funcion">The loss of sigmoid funcion<a hidden class="anchor" aria-hidden="true" href="#the-loss-of-sigmoid-funcion">#</a></h3>
+<p>And it&rsquo;s neccesary to introduce the parameters in the function above again:</p>
+<ul>
+<li>
+<p>$x$: feature</p>
+</li>
+<li>
+<p>${\bf{W}}, b, c^T, b$: Unknown parameters</p>
+</li>
+</ul>
+<p>And by combining $\bf{W}, \bf{c}, \bf{b}, b$ into a row, we can get a vector $\bf{\theta}$.</p>
+<p>So, similarly, we can have loss function $L(\theta)$, like:</p>
+$$
+L = \frac 1N \sum_{n}{e_n}
+$$<h3 id="and-the-optimization-of-sigmoid-funtion">And&hellip; the Optimization of Sigmoid Funtion<a hidden class="anchor" aria-hidden="true" href="#and-the-optimization-of-sigmoid-funtion">#</a></h3>
+<p>Almost the same as before.</p>
+$$
+\theta^i \leftarrow \theta^{i - 1} - \eta {\left. \frac{\partial L}{\partial \theta} \right|}_{\theta = \theta^{i - 1}}
+$$<p>We can define a vector $g$ (gradient):</p>
+<!--  -->
+$$
+g = \begin{pmatrix}
+{\frac{\partial L}{\partial \theta_1} \Big|}_{\theta_1=\theta_1^{i-1}} \\
+{\frac{\partial L}{\partial \theta_2} \Big|}_{\theta_2=\theta_2^{i-1}} \\
+\vdots \\
+{\frac{\partial L}{\partial \theta_n} \Big|}_{\theta_n=\theta_n^{i-1}} \\
+\end{pmatrix}
+$$
+<!--  -->
+<p>So, we have</p>
+$$
+\theta^i \leftarrow \theta^{i - 1} - \eta g \\
+g = \nabla L(\theta^0)
+$$<p>When we solve the problem in reality, we randomly divide the total data $N$ into several batchs, each called a batch. And for each batch, we can calculate the value of Loss, $L_i$, and individually use $L_i$ to <strong>update</strong> $\theta$ , and when <strong>we see all the batched once</strong>, we say that we go through <em><strong>an epoch</strong></em>.</p>
+<h3 id="another-choice-relu">Another choice: ReLU<a hidden class="anchor" aria-hidden="true" href="#another-choice-relu">#</a></h3>
+<p>If we don&rsquo;t adapt the sigmoid function method to approach the piecewise linear function, we can also try Rectified Linear Unit(ReLU):</p>
+$$
+y = c \space max(0, b + \omega x_1) + c' \space max(0, b' + \omega x_1)
+$$<p>So we can approach the curve like this:</p>
+$$
+y = b + \sum_{2i}{c_i \space max(0, b_i + \sum_{j}{w_{ij} x_j})}
+$$<p>compared to sigmoid function:</p>
+$$
+y = b + \sum_{i}{c_i \space sigmoid(b_i + \sum_{j}{w_{ij} x_j})}
+$$<p>As a result, we can identify both sigmoid and ReLU into <em><strong>Activation function</strong></em>.</p>
+<h2 id="further-improvement-deep-learning">Further Improvement: Deep Learning<a hidden class="anchor" aria-hidden="true" href="#further-improvement-deep-learning">#</a></h2>
+<p>So temporarily, we still assume that we take sigmoid as activation function, take $\bf{a} = \sigma(\bf{r})$ , the sigmoid we have mentioned:</p>
+$$
+y = b + \bf{c}^T \bf{a}
+$$<p>Now we can take a step further: can we put $a$ as in input into sigmoid function, like:</p>
+$$
+\bf{a}' = \sigma (\bf{b}' + \bf{W}'\bf{a})
+$$<p>This is called adding a layer in funcion. By doing this, we can greatly improve the accuracy of our model.</p>
+<p>And we can name one sigmoid function in the model by <strong>Neuron</strong>, and the whole model can be named as <strong>Neural Network</strong>.</p>
+<p>Among the model, we&rsquo;ve got many layers, which can be named as <strong>hidden layer</strong>, so the whole technique can also called <em><strong>Deep Learning</strong></em>.</p>
+$$
+Deep = Many\space hidden\space layers
+$$<h3 id="a-few-examples">A few examples<a hidden class="anchor" aria-hidden="true" href="#a-few-examples">#</a></h3>
+<ul>
+<li>
+<p>AlexNet(2012): 8 layers</p>
+</li>
+<li>
+<p>VGG(2014): 19 layers</p>
+</li>
+<li>
+<p>GoogleNet(2014): 22 layers</p>
+</li>
+<li>
+<p>Residual Net(2015): 152 layers</p>
+</li>
+</ul>
+<h3 id="thinking">Thinking:<a hidden class="anchor" aria-hidden="true" href="#thinking">#</a></h3>
+<ul>
+<li>
+<p>Why deep, instead of broad?</p>
+</li>
+<li>
+<p>Why not deeper? <strong>Overfitting</strong>: Better on training data, worse on unseen data.</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://Farewe1ll.github.io/tags/machine-learning/">Machine Learning</a></li>
+      <li><a href="https://Farewe1ll.github.io/tags/ml/">ML</a></li>
+      <li><a href="https://Farewe1ll.github.io/tags/hung-yi-lee/">Hung-Yi Lee</a></li>
+      <li><a href="https://Farewe1ll.github.io/tags/concept/">Concept</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://Farewe1ll.github.io/posts/algo/atcoder-beginner-contest-380-a~e/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>AtCoder Beginner Contest 380 (A~E)</span>
+  </a>
+  <a class="next" href="https://Farewe1ll.github.io/posts/algo/codeforces-round-982-div.-2/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Codeforces Round 982 (Div. 2)</span>
+  </a>
+</nav>
+
+  </footer><script src="https://giscus.app/client.js"
+        data-repo="Farewe1ll/Farewe1ll-Blog_Comments"
+        data-repo-id="R_kgDOM38Dfw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM38Df84Ci1w1"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="transparent_dark"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://Farewe1ll.github.io/">Blog of Farewe1ll</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
